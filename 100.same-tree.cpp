@@ -22,56 +22,11 @@ class Solution
             return true;
         }
 
-        if ((p == nullptr && q != nullptr) || (p != nullptr && q == nullptr))
+        if (p != nullptr && q != nullptr && p->val == q->val)
         {
-            return false;
+            return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
         }
 
-        if (p->val != q->val)
-        {
-            return false;
-        }
-
-        if (p->left == nullptr && q->left == nullptr && p->right == nullptr &&
-            q->right == nullptr)
-        {
-            return true;
-        }
-
-        if ((p->left == nullptr && q->left != nullptr) ||
-            (p->left != nullptr && q->left == nullptr) ||
-            (p->right == nullptr && q->right != nullptr) ||
-            (p->right != nullptr && q->right == nullptr))
-        {
-            return false;
-        }
-
-        bool left = true, right = true;
-
-        if (p->left != nullptr && q->left != nullptr)
-        {
-            if (p->left->val != q->left->val)
-            {
-                left = false;
-            }
-            else
-            {
-                left = isSameTree(p->left, q->left);
-            }
-        }
-
-        if (p->right != nullptr && q->right != nullptr)
-        {
-            if (p->right->val != q->right->val)
-            {
-                right = false;
-            }
-            else
-            {
-                right = isSameTree(p->right, q->right);
-            }
-        }
-
-        return left && right;
+        return false;
     }
 };
